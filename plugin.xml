@@ -53,6 +53,21 @@
         <clobbers target="PushNotification" />
     </js-module>
 
+    <!-- FilePath -->
+    <js-module src="www/FilePath.js" name="FilePath">
+        <clobbers target="window.FilePath" />
+    </js-module>
+
+    <!-- SIM -->
+    <js-module src="www/sim.js" name="Sim">
+        <clobbers target="window.plugins.sim" />
+    </js-module>
+
+    <!-- FileChooser -->
+    <js-module src="www/fileChooser.js" name="FileChooser">
+        <clobbers target="fileChooser" />
+    </js-module>
+
     <!-- ios -->
     <platform name="ios">
 
@@ -63,6 +78,9 @@
             </feature>
             <feature name="PushPlugin">
                 <param name="ios-package" value="PushPlugin"/>
+            </feature>
+            <feature name="Sim">
+                <param name="ios-package" value="Sim" />
             </feature>
         </config-file>
 
@@ -88,6 +106,10 @@
         <header-file src="src/ios/push/PushPlugin.h" />
         <source-file src="src/ios/push/PushPlugin.m" />
 
+        <!-- Sim -->
+        <header-file src="src/ios/Sim/Sim.h"/>
+        <source-file src="src/ios/Sim/Sim.m"/>
+
         <!-- local notification hooks-->
         <hook
             type="after_platform_add"
@@ -97,6 +119,8 @@
             type="after_plugin_install"
             src="scripts/ios/didRegisterUserNotificationSettings.js" />
 
+        <!-- Sim -->
+        <framework src="CoreTelephony.framework"/>
     </platform>
 
     <!-- android -->
@@ -108,6 +132,16 @@
             </feature>
             <feature name="PushPlugin" >
                 <param name="android-package" value="com.plugin.gcm.PushPlugin"/>
+            </feature>
+            <feature name="FilePath" >
+                <param name="android-package" value="com.hiddentao.cordova.filepath.FilePath"/>
+                <param name="onload" value="true" />
+            </feature>
+            <feature name="Sim">
+                <param name="android-package" value="com.pbakondy.Sim"/>
+            </feature>
+            <feature name="FileChooser">
+                <param name="android-package" value="com.megster.cordova.FileChooser"/>
             </feature>
         </config-file>
 
@@ -173,6 +207,8 @@
             <permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
             <uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
             <!-- pushnotification -->
+            <!-- Sim -->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
         
@@ -254,6 +290,15 @@
         <source-file src="src/android/gcm/PushHandlerActivity.java" target-dir="src/com/plugin/gcm/" />
         <source-file src="src/android/gcm/PushPlugin.java" target-dir="src/com/plugin/gcm/" />
         <source-file src="src/android/gcm/NotificationService.java" target-dir="src/com/plugin/gcm/" />
+
+        <!-- FilePath -->
+        <source-file src="src/android/FilePath/FilePath.java" target-dir="src/com/hiddentao/cordova/filepath" />
+
+        <!-- Sim -->
+        <source-file src="src/android/Sim/Sim.java" target-dir="src/com/pbakondy" />
+
+        <!-- FileChooser -->
+        <source-file src="src/android/FileChooser/FileChooser.java" target-dir="src/com/megster/cordova"/>
 
         <!-- <framework src="com.google.android.gms:play-services-gcm:+" custom="true" /> -->
     </platform>
