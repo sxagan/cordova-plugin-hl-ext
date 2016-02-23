@@ -28,6 +28,8 @@ public class FileUtil extends CordovaPlugin {
 	private static final String ACTION_FP_RESOLVE = "resolveNativePath";
     private static final String ACTION_OPEN = "open";
 
+    private static final int PICK_FILE_REQUEST = 1;
+
     CallbackContext callback;
 
 	public void initialize(CordovaInterface cordova, final CordovaWebView webView) {
