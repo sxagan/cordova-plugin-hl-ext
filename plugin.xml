@@ -68,6 +68,11 @@
         <clobbers target="fileChooser" />
     </js-module>
 
+    <!-- CordovaClipboard -->
+    <js-module src="www/clipboard.js" name="Clipboard">
+        <clobbers target="cordova.plugins.clipboard" />
+    </js-module>
+
     <!-- ios -->
     <platform name="ios">
 
@@ -82,7 +87,18 @@
             <feature name="Sim">
                 <param name="ios-package" value="Sim" />
             </feature>
+            <feature name="Clipboard">
+                <param name="ios-package" value="CDVClipboard" />
+            </feature>
+            <feature name="DatePicker">
+                <param name="ios-package" value="DatePicker"/>
+            </feature>
         </config-file>
+
+        <!-- DatePicker -->
+        <js-module src="www/ios/DatePicker.js" name="DatePicker">
+            <clobbers target="datePicker" />
+        </js-module>
 
         <header-file src="src/ios/APPLocalNotification.h" />
         <source-file src="src/ios/APPLocalNotification.m" />
@@ -110,6 +126,15 @@
         <header-file src="src/ios/Sim/Sim.h"/>
         <source-file src="src/ios/Sim/Sim.m"/>
 
+        <!-- CordovaClipboard -->
+        <header-file src="src/ios/Clipboard/CDVClipboard.h" />
+        <source-file src="src/ios/Clipboard/CDVClipboard.m" />
+
+        <!-- DatePicker -->
+        <header-file src="src/ios/DatePicker/DatePicker.h" />
+        <source-file src="src/ios/DatePicker/DatePicker.m" />
+        <resource-file src="src/ios/DatePicker/DatePicker.xib" />
+
         <!-- local notification hooks-->
         <hook
             type="after_platform_add"
@@ -125,6 +150,11 @@
 
     <!-- android -->
     <platform name="android">
+
+        <!-- DatePicker -->
+        <js-module src="www/android/DatePicker.js" name="DatePicker">
+            <clobbers target="datePicker" />
+        </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="LocalNotification">
@@ -142,6 +172,12 @@
             </feature>
             <feature name="FileChooser">
                 <param name="android-package" value="com.megster.cordova.FileChooser"/>
+            </feature>
+            <feature name="Clipboard">
+                <param name="android-package" value="com.verso.cordova.clipboard.Clipboard" />
+            </feature>
+            <feature name="DatePickerPlugin">
+                <param name="android-package" value="com.plugin.datepicker.DatePickerPlugin"/>
             </feature>
         </config-file>
 
@@ -299,6 +335,12 @@
 
         <!-- FileChooser -->
         <source-file src="src/android/FileChooser/FileChooser.java" target-dir="src/com/megster/cordova"/>
+
+        <!-- CordovaClipboard -->
+        <source-file src="src/android/Clipboard/Clipboard.java" target-dir="src/com/verso/cordova/clipboard" />
+
+        <!-- DatePicker -->
+        <source-file src="src/android/DatePicker/DatePickerPlugin.java" target-dir="src/com/plugin/datepicker" />
 
         <!-- <framework src="com.google.android.gms:play-services-gcm:+" custom="true" /> -->
     </platform>
