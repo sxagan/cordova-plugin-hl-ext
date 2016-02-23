@@ -58,14 +58,14 @@
         <clobbers target="window.FilePath" />
     </js-module>
 
-    <!-- SIM -->
-    <js-module src="www/sim.js" name="Sim">
-        <clobbers target="window.plugins.sim" />
-    </js-module>
-
     <!-- FileChooser -->
     <js-module src="www/fileChooser.js" name="FileChooser">
         <clobbers target="fileChooser" />
+    </js-module>
+
+    <!-- SIM -->
+    <js-module src="www/sim.js" name="Sim">
+        <clobbers target="window.plugins.sim" />
     </js-module>
 
     <!-- CordovaClipboard -->
@@ -163,21 +163,25 @@
             <feature name="PushPlugin" >
                 <param name="android-package" value="com.plugin.gcm.PushPlugin"/>
             </feature>
-            <feature name="FilePath" >
+            <!-- <feature name="FilePath" >
                 <param name="android-package" value="com.hiddentao.cordova.filepath.FilePath"/>
                 <param name="onload" value="true" />
-            </feature>
+            </feature> -->
             <feature name="Sim">
                 <param name="android-package" value="com.pbakondy.Sim"/>
             </feature>
-            <feature name="FileChooser">
+            <!-- <feature name="FileChooser">
                 <param name="android-package" value="com.megster.cordova.FileChooser"/>
-            </feature>
+            </feature> -->
             <feature name="Clipboard">
                 <param name="android-package" value="com.verso.cordova.clipboard.Clipboard" />
             </feature>
             <feature name="DatePickerPlugin">
                 <param name="android-package" value="com.plugin.datepicker.DatePickerPlugin"/>
+            </feature>
+            <feature name="FileUtil" >
+                <param name="android-package" value="com.hiddentao.cordova.fileutil.FileUtil"/>
+                <param name="onload" value="true" />
             </feature>
         </config-file>
 
@@ -328,13 +332,16 @@
         <source-file src="src/android/gcm/NotificationService.java" target-dir="src/com/plugin/gcm/" />
 
         <!-- FilePath -->
-        <source-file src="src/android/FilePath/FilePath.java" target-dir="src/com/hiddentao/cordova/filepath" />
+        <!-- <source-file src="src/android/FilePath/FilePath.java" target-dir="src/com/hiddentao/cordova/filepath" /> -->
+
+        <!-- FileChooser -->
+        <!-- <source-file src="src/android/FileChooser/FileChooser.java" target-dir="src/com/megster/cordova"/> -->
+
+        <!-- FileUtil -->
+        <source-file src="src/android/FilePath/FileUtil.java" target-dir="src/com/hiddentao/cordova/fileutil"/>
 
         <!-- Sim -->
         <source-file src="src/android/Sim/Sim.java" target-dir="src/com/pbakondy" />
-
-        <!-- FileChooser -->
-        <source-file src="src/android/FileChooser/FileChooser.java" target-dir="src/com/megster/cordova"/>
 
         <!-- CordovaClipboard -->
         <source-file src="src/android/Clipboard/Clipboard.java" target-dir="src/com/verso/cordova/clipboard" />

@@ -13,7 +13,7 @@ import org.json.JSONException;
 
 public class FileChooser extends CordovaPlugin {
 
-    private static final String TAG = "FileChooser";
+    private static final String FCTAG = "FileChooser";
     private static final String ACTION_OPEN = "open";
     private static final int PICK_FILE_REQUEST = 1;
     CallbackContext callback;
@@ -58,7 +58,7 @@ public class FileChooser extends CordovaPlugin {
 
                 if (uri != null) {
 
-                    Log.w(TAG, uri.toString());
+                    Log.w(FCTAG, uri.toString());
                     callback.success(uri.toString());
 
                 } else {

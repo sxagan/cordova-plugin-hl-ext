@@ -1,5 +1,4 @@
-package com.hiddentao.cordova.filepath;
-
+package com.hiddentao.cordova.fileutil;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -10,24 +9,32 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.app.Activity;
+import android.content.Intent;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaArgs;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
+import org.json.JSONException;
 
+public class FileUtil extends CordovaPlugin {
+	private static final String FPTAG = "[FilePath plugin]: ";
+	private static final String FCTAG = "FileChooser";
 
-public class FilePath extends CordovaPlugin {
+	private static final String ACTION_FP_RESOLVE = "resolveNativePath";
+    private static final String ACTION_OPEN = "open";
 
-    private static final String FPTAG = "[FilePath plugin]: ";
+    CallbackContext callback;
 
-
-    public void initialize(CordovaInterface cordova, final CordovaWebView webView) {
+	public void initialize(CordovaInterface cordova, final CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
 
-    /**
+        /**
      * Executes the request and returns PluginResult.
      *
      * @param action        The action to execute.
@@ -38,7 +45,7 @@ public class FilePath extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         try {
-            if (action.equals("resolveNativePath")) {
+            if (action.equals(ACTION_FP_RESOLVE)) {
               /* content:///... */
                 String uriStr = args.getString(0);
                 Uri pvUrl = Uri.parse(uriStr);
@@ -57,7 +64,12 @@ public class FilePath extends CordovaPlugin {
                 callbackContext.success(filePath);
 
                 return true;
-            } else {
+            } 
+            else if(action.equals(ACTION_OPEN)) {
+	            chooseFile(callbackContext);
+	            return true;
+	        }
+            else {
                 throw new Exception("Invalid action");
             }
         } catch (Exception e) {
@@ -67,8 +79,7 @@ public class FilePath extends CordovaPlugin {
         }
     }
 
-
-
+    /*FilePath*/
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
@@ -218,5 +229,57 @@ public class FilePath extends CordovaPlugin {
         }
 
         return null;
+    }
+
+    /*FileChooser*/
+    public void chooseFile(CallbackContext callbackContext) {
+
+        // type and title should be configurable
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+
+        Intent chooser = Intent.createChooser(intent, "Select File");
+        cordova.startActivityForResult(this, chooser, PICK_FILE_REQUEST);
+
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
+        pluginResult.setKeepCallback(true);
+        callback = callbackContext;
+        callbackContext.sendPluginResult(pluginResult);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == PICK_FILE_REQUEST && callback != null) {
+
+            if (resultCode == Activity.RESULT_OK) {
+
+                Uri uri = data.getData();
+
+                if (uri != null) {
+
+                    Log.w(FCTAG, uri.toString());
+                    callback.success(uri.toString());
+
+                } else {
+
+                    callback.error("File uri was null");
+
+                }
+
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+
+                // TODO NO_RESULT or error callback?
+                PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
+                callback.sendPluginResult(pluginResult);
+
+            } else {
+
+                callback.error(resultCode);
+            }
+        }
     }
 }

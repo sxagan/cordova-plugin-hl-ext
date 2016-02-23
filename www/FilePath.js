@@ -8,7 +8,10 @@ module.exports = {
      * @param successCallback  invoked with a native filesystem path string
      * @param errorCallback  invoked if error occurs
      */
-    resolveNativePath: function(path, successCallback, errorCallback) {
+    /*resolveNativePath: function(path, successCallback, errorCallback) {
         exec(successCallback, errorCallback, "FilePath", "resolveNativePath", [path]);
+    }*/
+    resolveNativePath: function(path, successCallback, errorCallback) {
+        exec(successCallback, errorCallback, "FileUtil", "resolveNativePath", [path]);
     }
 };
