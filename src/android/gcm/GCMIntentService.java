@@ -29,7 +29,8 @@ public class GCMIntentService extends GCMBaseIntentService {
     private static String LOGTAG = "PushPlugin-GCMIntentService";
     static final String TAG = "HotlineNotifications";
 
-    public static final String MESSAGE = "message";
+    //public static final String MESSAGE = "message";
+    public static final String MESSAGE = "msg";
 
     public GCMIntentService() {
         super("GCMIntentService");
@@ -59,13 +60,16 @@ public class GCMIntentService extends GCMBaseIntentService {
                     createNotification(context, extras);
                 }*/
                 //createNotification(context, extras);
-                JSONObject appends = ToJson(extras);
-                try {
-                    appends.put("id",1);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (extras.getString(MESSAGE) != null && extras.getString(MESSAGE).length() != 0){
+                    JSONObject appends = ToJson(extras);
+                    try {
+                        appends.put("id",1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Manager.getInstance(context).append(1, appends,TriggerReceiver.class);
+                    
                 }
-                Manager.getInstance(context).append(1, appends,TriggerReceiver.class);
             }
 
             NotificationService.getInstance(context).onMessage(extras);
