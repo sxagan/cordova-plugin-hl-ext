@@ -1,4 +1,4 @@
-package com.plugin.gcm;
+package com.plugin.hlext.gcm;
 
 import android.app.Activity;
 import android.app.ActivityManager;

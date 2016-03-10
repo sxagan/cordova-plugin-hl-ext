@@ -1,4 +1,4 @@
-package com.plugin.gcm;
+package com.plugin.hlext.gcm;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;

@@ -1,4 +1,4 @@
-package com.plugin.gcm;
+package com.plugin.hlext.gcm;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
