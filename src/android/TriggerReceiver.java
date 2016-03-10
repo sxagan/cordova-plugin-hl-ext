@@ -21,10 +21,10 @@
  * @APPPLANT_LICENSE_HEADER_END@
  */
 
-package com.datum.hotline.plugin.hlpush.localnotification;
+package com.datum.hotline.plugin.hlext.localnotification;
 
-import com.datum.hotline.plugin.hlpush.notification.Builder;
-import com.datum.hotline.plugin.hlpush.notification.Notification;
+import com.datum.hotline.plugin.hlext.notification.Builder;
+import com.datum.hotline.plugin.hlext.notification.Notification;
 
 /**
  * The alarm receiver is triggered when a scheduled alarm is fired. This class
@@ -32,7 +32,7 @@ import com.datum.hotline.plugin.hlpush.notification.Notification;
  * Android notification bar. The notification uses the default notification
  * sound and it vibrates the phone.
  */
-public class TriggerReceiver extends com.datum.hotline.plugin.hlpush.notification.TriggerReceiver {
+public class TriggerReceiver extends com.datum.hotline.plugin.hlext.notification.TriggerReceiver {
 
     /**
      * Called when a local notification was triggered. Does present the local

@@ -17,8 +17,8 @@ import org.json.JSONObject;
 
 import java.util.Set;
 
-import com.datum.hotline.plugin.hlpush.localnotification.TriggerReceiver;
-import com.datum.hotline.plugin.hlpush.notification.Manager;
+import com.datum.hotline.plugin.hlext.localnotification.TriggerReceiver;
+import com.datum.hotline.plugin.hlext.notification.Manager;
 
 @SuppressLint("NewApi")
 public class GCMIntentService extends GCMBaseIntentService {
@@ -60,21 +60,18 @@ public class GCMIntentService extends GCMBaseIntentService {
                     createNotification(context, extras);
                 }*/
                 //createNotification(context, extras);
-                String payload = extras.getString("payload");
-                JSONObject data = null;
-                if(payload != null){
+                Log.d(LOGTAG, "onMessage: " + extras.toString());
+
+                String msg = "";
+                String data = extras.getString("data");
+
+                if(data != null){
                     try {
-                        JSONObject t = new JSONObject(payload);
-                        data = t.getJSONObject("data");
+                        JSONObject t = new JSONObject(data);
+                        msg = t.getString("msg");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                String msg = "";
-                try {
-                    msg = data.getString(MESSAGE);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
                 //if (extras.getString(MESSAGE) != null && extras.getString(MESSAGE).length() != 0){
                 //if (data != null && data.getString(MESSAGE) != null && data.getString(MESSAGE).length() != 0){

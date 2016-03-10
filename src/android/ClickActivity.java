@@ -21,18 +21,18 @@
  * @APPPLANT_LICENSE_HEADER_END@
  */
 
-package com.datum.hotline.plugin.hlpush.localnotification;
+package com.datum.hotline.plugin.hlext.localnotification;
 
-import com.datum.hotline.plugin.hlpush.notification.Builder;
-import com.datum.hotline.plugin.hlpush.notification.Notification;
-import com.datum.hotline.plugin.hlpush.notification.TriggerReceiver;
+import com.datum.hotline.plugin.hlext.notification.Builder;
+import com.datum.hotline.plugin.hlext.notification.Notification;
+import com.datum.hotline.plugin.hlext.notification.TriggerReceiver;
 
 /**
  * The receiver activity is triggered when a notification is clicked by a user.
  * The activity calls the background callback and brings the launch intent
  * up to foreground.
  */
-public class ClickActivity extends com.datum.hotline.plugin.hlpush.notification.ClickActivity {
+public class ClickActivity extends com.datum.hotline.plugin.hlext.notification.ClickActivity {
 
     /**
      * Called when local notification was clicked by the user.

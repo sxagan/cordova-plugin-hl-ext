@@ -21,9 +21,9 @@
  * @APPPLANT_LICENSE_HEADER_END@
  */
 
-package com.datum.hotline.plugin.hlpush.localnotification;
+package com.datum.hotline.plugin.hlext.localnotification;
 
-import com.datum.hotline.plugin.hlpush.notification.Notification;
+import com.datum.hotline.plugin.hlext.notification.Notification;
 
 
 /**
@@ -31,7 +31,7 @@ import com.datum.hotline.plugin.hlpush.notification.Notification;
  * notification manually. It un-persists the cleared notification from the
  * shared preferences.
  */
-public class ClearReceiver extends com.datum.hotline.plugin.hlpush.notification.ClearReceiver {
+public class ClearReceiver extends com.datum.hotline.plugin.hlext.notification.ClearReceiver {
 
     /**
      * Called when a local notification was cleared from outside of the app.

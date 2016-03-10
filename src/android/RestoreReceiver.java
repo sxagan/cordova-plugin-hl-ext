@@ -21,11 +21,11 @@
  * @APPPLANT_LICENSE_HEADER_END@
  */
 
-package com.datum.hotline.plugin.hlpush.localnotification;
+package com.datum.hotline.plugin.hlext.localnotification;
 
-import com.datum.hotline.plugin.hlpush.notification.AbstractRestoreReceiver;
-import com.datum.hotline.plugin.hlpush.notification.Builder;
-import com.datum.hotline.plugin.hlpush.notification.Notification;
+import com.datum.hotline.plugin.hlext.notification.AbstractRestoreReceiver;
+import com.datum.hotline.plugin.hlext.notification.Builder;
+import com.datum.hotline.plugin.hlext.notification.Notification;
 
 /**
  * This class is triggered upon reboot of the device. It needs to re-register

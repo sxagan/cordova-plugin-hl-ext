@@ -21,7 +21,7 @@
  * @APPPLANT_LICENSE_HEADER_END@
  */
 
-package com.datum.hotline.plugin.hlpush.localnotification;
+package com.datum.hotline.plugin.hlext.localnotification;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,8 +45,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-import com.datum.hotline.plugin.hlpush.notification.Manager;
-import com.datum.hotline.plugin.hlpush.notification.Notification;
+import com.datum.hotline.plugin.hlext.notification.Manager;
+import com.datum.hotline.plugin.hlext.notification.Notification;
 
 /**
  * This plugin utilizes the Android AlarmManager in combination with local
